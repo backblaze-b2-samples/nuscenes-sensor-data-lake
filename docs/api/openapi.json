@@ -1,0 +1,1954 @@
+{
+  "components": {
+    "schemas": {
+      "ChannelFrame": {
+        "description": "One sensor channel of a keyframe, resolved through the real devkit.",
+        "properties": {
+          "channel": {
+            "title": "Channel",
+            "type": "string"
+          },
+          "content_type": {
+            "title": "Content Type",
+            "type": "string"
+          },
+          "filename": {
+            "title": "Filename",
+            "type": "string"
+          },
+          "key": {
+            "title": "Key",
+            "type": "string"
+          },
+          "modality": {
+            "enum": [
+              "camera",
+              "lidar",
+              "radar"
+            ],
+            "title": "Modality",
+            "type": "string"
+          },
+          "size_bytes": {
+            "title": "Size Bytes",
+            "type": "integer"
+          },
+          "size_human": {
+            "title": "Size Human",
+            "type": "string"
+          },
+          "url": {
+            "title": "Url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "channel",
+          "modality",
+          "filename",
+          "key",
+          "url",
+          "content_type",
+          "size_bytes",
+          "size_human"
+        ],
+        "title": "ChannelFrame",
+        "type": "object"
+      },
+      "DailyUploadCount": {
+        "properties": {
+          "date": {
+            "title": "Date",
+            "type": "string"
+          },
+          "uploads": {
+            "title": "Uploads",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "date",
+          "uploads"
+        ],
+        "title": "DailyUploadCount",
+        "type": "object"
+      },
+      "FileMetadata": {
+        "properties": {
+          "content_type": {
+            "title": "Content Type",
+            "type": "string"
+          },
+          "filename": {
+            "title": "Filename",
+            "type": "string"
+          },
+          "folder": {
+            "title": "Folder",
+            "type": "string"
+          },
+          "key": {
+            "title": "Key",
+            "type": "string"
+          },
+          "size_bytes": {
+            "title": "Size Bytes",
+            "type": "integer"
+          },
+          "size_human": {
+            "title": "Size Human",
+            "type": "string"
+          },
+          "uploaded_at": {
+            "format": "date-time",
+            "title": "Uploaded At",
+            "type": "string"
+          },
+          "url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Url"
+          }
+        },
+        "required": [
+          "key",
+          "filename",
+          "folder",
+          "size_bytes",
+          "size_human",
+          "content_type",
+          "uploaded_at"
+        ],
+        "title": "FileMetadata",
+        "type": "object"
+      },
+      "FileMetadataDetail": {
+        "properties": {
+          "bitrate": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bitrate"
+          },
+          "codec": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Codec"
+          },
+          "duration_seconds": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration Seconds"
+          },
+          "exif": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Exif"
+          },
+          "extension": {
+            "title": "Extension",
+            "type": "string"
+          },
+          "filename": {
+            "title": "Filename",
+            "type": "string"
+          },
+          "image_height": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Height"
+          },
+          "image_width": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Width"
+          },
+          "md5": {
+            "title": "Md5",
+            "type": "string"
+          },
+          "metadata_warning": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Metadata Warning"
+          },
+          "mime_type": {
+            "title": "Mime Type",
+            "type": "string"
+          },
+          "pdf_author": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pdf Author"
+          },
+          "pdf_pages": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pdf Pages"
+          },
+          "pdf_title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pdf Title"
+          },
+          "sha256": {
+            "title": "Sha256",
+            "type": "string"
+          },
+          "size_bytes": {
+            "title": "Size Bytes",
+            "type": "integer"
+          },
+          "size_human": {
+            "title": "Size Human",
+            "type": "string"
+          },
+          "uploaded_at": {
+            "format": "date-time",
+            "title": "Uploaded At",
+            "type": "string"
+          }
+        },
+        "required": [
+          "filename",
+          "size_bytes",
+          "size_human",
+          "mime_type",
+          "extension",
+          "md5",
+          "sha256",
+          "uploaded_at"
+        ],
+        "title": "FileMetadataDetail",
+        "type": "object"
+      },
+      "FileUploadResponse": {
+        "properties": {
+          "content_type": {
+            "title": "Content Type",
+            "type": "string"
+          },
+          "filename": {
+            "title": "Filename",
+            "type": "string"
+          },
+          "key": {
+            "title": "Key",
+            "type": "string"
+          },
+          "metadata": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/FileMetadataDetail"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "size_bytes": {
+            "title": "Size Bytes",
+            "type": "integer"
+          },
+          "size_human": {
+            "title": "Size Human",
+            "type": "string"
+          },
+          "uploaded_at": {
+            "format": "date-time",
+            "title": "Uploaded At",
+            "type": "string"
+          },
+          "url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Url"
+          }
+        },
+        "required": [
+          "key",
+          "filename",
+          "size_bytes",
+          "size_human",
+          "content_type",
+          "uploaded_at"
+        ],
+        "title": "FileUploadResponse",
+        "type": "object"
+      },
+      "FrameManifest": {
+        "description": "The per-keyframe training manifest returned by Serve frame.",
+        "properties": {
+          "devkit_version": {
+            "title": "Devkit Version",
+            "type": "string"
+          },
+          "ego_translation": {
+            "items": {
+              "type": "number"
+            },
+            "title": "Ego Translation",
+            "type": "array"
+          },
+          "frames": {
+            "items": {
+              "$ref": "#/components/schemas/ChannelFrame"
+            },
+            "title": "Frames",
+            "type": "array"
+          },
+          "keyframe_index": {
+            "title": "Keyframe Index",
+            "type": "integer"
+          },
+          "lidar_stats": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PointCloudStats"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "num_annotations": {
+            "title": "Num Annotations",
+            "type": "integer"
+          },
+          "num_keyframes": {
+            "title": "Num Keyframes",
+            "type": "integer"
+          },
+          "sample_token": {
+            "title": "Sample Token",
+            "type": "string"
+          },
+          "scene_name": {
+            "title": "Scene Name",
+            "type": "string"
+          },
+          "scene_token": {
+            "title": "Scene Token",
+            "type": "string"
+          },
+          "timestamp": {
+            "title": "Timestamp",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "scene_token",
+          "scene_name",
+          "sample_token",
+          "keyframe_index",
+          "num_keyframes",
+          "timestamp",
+          "ego_translation",
+          "num_annotations",
+          "devkit_version",
+          "frames"
+        ],
+        "title": "FrameManifest",
+        "type": "object"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "title": "Detail",
+            "type": "array"
+          }
+        },
+        "title": "HTTPValidationError",
+        "type": "object"
+      },
+      "LakeStats": {
+        "description": "AV-lake dashboard aggregates across every scene in the bucket.",
+        "properties": {
+          "blobs_by_modality": {
+            "$ref": "#/components/schemas/ModalityBreakdown"
+          },
+          "total_blobs": {
+            "title": "Total Blobs",
+            "type": "integer"
+          },
+          "total_keyframes": {
+            "title": "Total Keyframes",
+            "type": "integer"
+          },
+          "total_scenes": {
+            "title": "Total Scenes",
+            "type": "integer"
+          },
+          "total_size_bytes": {
+            "title": "Total Size Bytes",
+            "type": "integer"
+          },
+          "total_size_human": {
+            "title": "Total Size Human",
+            "type": "string"
+          }
+        },
+        "required": [
+          "total_scenes",
+          "total_keyframes",
+          "total_blobs",
+          "blobs_by_modality",
+          "total_size_bytes",
+          "total_size_human"
+        ],
+        "title": "LakeStats",
+        "type": "object"
+      },
+      "ModalityBreakdown": {
+        "properties": {
+          "camera": {
+            "title": "Camera",
+            "type": "integer"
+          },
+          "lidar": {
+            "title": "Lidar",
+            "type": "integer"
+          },
+          "radar": {
+            "title": "Radar",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "camera",
+          "lidar",
+          "radar"
+        ],
+        "title": "ModalityBreakdown",
+        "type": "object"
+      },
+      "PointCloudStats": {
+        "description": "Real stats computed by loading the LiDAR blob through the devkit's\nLidarPointCloud.from_file \u2014 the proof that B2-stored blobs are usable.",
+        "properties": {
+          "channel": {
+            "title": "Channel",
+            "type": "string"
+          },
+          "intensity_max": {
+            "title": "Intensity Max",
+            "type": "number"
+          },
+          "intensity_min": {
+            "title": "Intensity Min",
+            "type": "number"
+          },
+          "num_points": {
+            "title": "Num Points",
+            "type": "integer"
+          },
+          "x_max": {
+            "title": "X Max",
+            "type": "number"
+          },
+          "x_min": {
+            "title": "X Min",
+            "type": "number"
+          },
+          "y_max": {
+            "title": "Y Max",
+            "type": "number"
+          },
+          "y_min": {
+            "title": "Y Min",
+            "type": "number"
+          },
+          "z_max": {
+            "title": "Z Max",
+            "type": "number"
+          },
+          "z_min": {
+            "title": "Z Min",
+            "type": "number"
+          }
+        },
+        "required": [
+          "channel",
+          "num_points",
+          "x_min",
+          "x_max",
+          "y_min",
+          "y_max",
+          "z_min",
+          "z_max",
+          "intensity_min",
+          "intensity_max"
+        ],
+        "title": "PointCloudStats",
+        "type": "object"
+      },
+      "PresignUploadRequest": {
+        "description": "What the browser declares before uploading directly to B2.",
+        "properties": {
+          "content_type": {
+            "title": "Content Type",
+            "type": "string"
+          },
+          "filename": {
+            "title": "Filename",
+            "type": "string"
+          },
+          "size_bytes": {
+            "title": "Size Bytes",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "filename",
+          "content_type",
+          "size_bytes"
+        ],
+        "title": "PresignUploadRequest",
+        "type": "object"
+      },
+      "PresignUploadResponse": {
+        "description": "A short-lived presigned PUT the browser uploads to, plus the exact\nheaders it must send. `Content-Length` and `content-type` are signed into\nthe URL, so B2 rejects a body of any other size or type.",
+        "properties": {
+          "content_type": {
+            "title": "Content Type",
+            "type": "string"
+          },
+          "expires_in": {
+            "title": "Expires In",
+            "type": "integer"
+          },
+          "headers": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "title": "Headers",
+            "type": "object"
+          },
+          "key": {
+            "title": "Key",
+            "type": "string"
+          },
+          "method": {
+            "title": "Method",
+            "type": "string"
+          },
+          "url": {
+            "title": "Url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "key",
+          "url",
+          "method",
+          "content_type",
+          "headers",
+          "expires_in"
+        ],
+        "title": "PresignUploadResponse",
+        "type": "object"
+      },
+      "SceneCreateRequest": {
+        "description": "Create-a-scene payload. Defaults produce a sound, immediately-indexable\ndemo scene (surfaced as pre-selected values + a hint on the form).",
+        "properties": {
+          "description": {
+            "default": "",
+            "maxLength": 280,
+            "title": "Description",
+            "type": "string"
+          },
+          "keyframes": {
+            "default": 5,
+            "title": "Keyframes",
+            "type": "integer"
+          },
+          "location": {
+            "default": "boston-seaport",
+            "enum": [
+              "boston-seaport",
+              "singapore-onenorth",
+              "singapore-queenstown",
+              "singapore-hollandvillage"
+            ],
+            "title": "Location",
+            "type": "string"
+          },
+          "name": {
+            "maxLength": 64,
+            "minLength": 2,
+            "title": "Name",
+            "type": "string"
+          },
+          "sensor_suite": {
+            "default": "full",
+            "enum": [
+              "full",
+              "camera+lidar"
+            ],
+            "title": "Sensor Suite",
+            "type": "string"
+          },
+          "time_of_day": {
+            "default": "day",
+            "enum": [
+              "day",
+              "night"
+            ],
+            "title": "Time Of Day",
+            "type": "string"
+          },
+          "weather": {
+            "default": "clear",
+            "enum": [
+              "clear",
+              "rain"
+            ],
+            "title": "Weather",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "SceneCreateRequest",
+        "type": "object"
+      },
+      "SceneDeleteResponse": {
+        "properties": {
+          "deleted": {
+            "title": "Deleted",
+            "type": "boolean"
+          },
+          "objects_removed": {
+            "title": "Objects Removed",
+            "type": "integer"
+          },
+          "token": {
+            "title": "Token",
+            "type": "string"
+          }
+        },
+        "required": [
+          "deleted",
+          "token",
+          "objects_removed"
+        ],
+        "title": "SceneDeleteResponse",
+        "type": "object"
+      },
+      "SceneDetail": {
+        "properties": {
+          "blob_count": {
+            "title": "Blob Count",
+            "type": "integer"
+          },
+          "blobs": {
+            "items": {
+              "$ref": "#/components/schemas/SensorBlob"
+            },
+            "title": "Blobs",
+            "type": "array"
+          },
+          "channels": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Channels",
+            "type": "array"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "description": {
+            "title": "Description",
+            "type": "string"
+          },
+          "keyframes": {
+            "title": "Keyframes",
+            "type": "integer"
+          },
+          "location": {
+            "title": "Location",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "sensor_suite": {
+            "title": "Sensor Suite",
+            "type": "string"
+          },
+          "time_of_day": {
+            "title": "Time Of Day",
+            "type": "string"
+          },
+          "token": {
+            "title": "Token",
+            "type": "string"
+          },
+          "total_size_bytes": {
+            "title": "Total Size Bytes",
+            "type": "integer"
+          },
+          "total_size_human": {
+            "title": "Total Size Human",
+            "type": "string"
+          },
+          "weather": {
+            "title": "Weather",
+            "type": "string"
+          }
+        },
+        "required": [
+          "token",
+          "name",
+          "description",
+          "location",
+          "time_of_day",
+          "weather",
+          "sensor_suite",
+          "keyframes",
+          "channels",
+          "blob_count",
+          "total_size_bytes",
+          "total_size_human",
+          "created_at",
+          "blobs"
+        ],
+        "title": "SceneDetail",
+        "type": "object"
+      },
+      "SceneSummary": {
+        "properties": {
+          "blob_count": {
+            "title": "Blob Count",
+            "type": "integer"
+          },
+          "channels": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Channels",
+            "type": "array"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "description": {
+            "title": "Description",
+            "type": "string"
+          },
+          "keyframes": {
+            "title": "Keyframes",
+            "type": "integer"
+          },
+          "location": {
+            "title": "Location",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "sensor_suite": {
+            "title": "Sensor Suite",
+            "type": "string"
+          },
+          "time_of_day": {
+            "title": "Time Of Day",
+            "type": "string"
+          },
+          "token": {
+            "title": "Token",
+            "type": "string"
+          },
+          "total_size_bytes": {
+            "title": "Total Size Bytes",
+            "type": "integer"
+          },
+          "total_size_human": {
+            "title": "Total Size Human",
+            "type": "string"
+          },
+          "weather": {
+            "title": "Weather",
+            "type": "string"
+          }
+        },
+        "required": [
+          "token",
+          "name",
+          "description",
+          "location",
+          "time_of_day",
+          "weather",
+          "sensor_suite",
+          "keyframes",
+          "channels",
+          "blob_count",
+          "total_size_bytes",
+          "total_size_human",
+          "created_at"
+        ],
+        "title": "SceneSummary",
+        "type": "object"
+      },
+      "SceneUpdateRequest": {
+        "description": "Edit-a-scene payload \u2014 metadata only (no re-synthesis of blobs).",
+        "properties": {
+          "description": {
+            "default": "",
+            "maxLength": 280,
+            "title": "Description",
+            "type": "string"
+          },
+          "location": {
+            "enum": [
+              "boston-seaport",
+              "singapore-onenorth",
+              "singapore-queenstown",
+              "singapore-hollandvillage"
+            ],
+            "title": "Location",
+            "type": "string"
+          },
+          "name": {
+            "maxLength": 64,
+            "minLength": 2,
+            "title": "Name",
+            "type": "string"
+          },
+          "time_of_day": {
+            "enum": [
+              "day",
+              "night"
+            ],
+            "title": "Time Of Day",
+            "type": "string"
+          },
+          "weather": {
+            "enum": [
+              "clear",
+              "rain"
+            ],
+            "title": "Weather",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "location",
+          "time_of_day",
+          "weather"
+        ],
+        "title": "SceneUpdateRequest",
+        "type": "object"
+      },
+      "SensorBlob": {
+        "properties": {
+          "channel": {
+            "title": "Channel",
+            "type": "string"
+          },
+          "content_type": {
+            "title": "Content Type",
+            "type": "string"
+          },
+          "filename": {
+            "title": "Filename",
+            "type": "string"
+          },
+          "key": {
+            "title": "Key",
+            "type": "string"
+          },
+          "modality": {
+            "enum": [
+              "camera",
+              "lidar",
+              "radar"
+            ],
+            "title": "Modality",
+            "type": "string"
+          },
+          "size_bytes": {
+            "title": "Size Bytes",
+            "type": "integer"
+          },
+          "size_human": {
+            "title": "Size Human",
+            "type": "string"
+          }
+        },
+        "required": [
+          "channel",
+          "modality",
+          "key",
+          "filename",
+          "size_bytes",
+          "size_human",
+          "content_type"
+        ],
+        "title": "SensorBlob",
+        "type": "object"
+      },
+      "UploadStats": {
+        "properties": {
+          "total_downloads": {
+            "title": "Total Downloads",
+            "type": "integer"
+          },
+          "total_files": {
+            "title": "Total Files",
+            "type": "integer"
+          },
+          "total_size_bytes": {
+            "title": "Total Size Bytes",
+            "type": "integer"
+          },
+          "total_size_human": {
+            "title": "Total Size Human",
+            "type": "string"
+          },
+          "uploads_today": {
+            "title": "Uploads Today",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "total_files",
+          "total_size_bytes",
+          "total_size_human",
+          "uploads_today",
+          "total_downloads"
+        ],
+        "title": "UploadStats",
+        "type": "object"
+      },
+      "ValidationError": {
+        "properties": {
+          "ctx": {
+            "title": "Context",
+            "type": "object"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "title": "Location",
+            "type": "array"
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError",
+        "type": "object"
+      },
+      "VerifyUploadRequest": {
+        "description": "Sent after the direct PUT so the API can inspect the stored object.",
+        "properties": {
+          "key": {
+            "title": "Key",
+            "type": "string"
+          }
+        },
+        "required": [
+          "key"
+        ],
+        "title": "VerifyUploadRequest",
+        "type": "object"
+      }
+    }
+  },
+  "info": {
+    "description": "Local API for the nuScenes Sensor Data Lake template, providing file upload and management backed by Backblaze B2. This contract documents the template's local API, not a hosted public endpoint.",
+    "title": "nuScenes Sensor Data Lake API",
+    "version": "0.1.0"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/files": {
+      "get": {
+        "operationId": "list_files_endpoint_files_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "prefix",
+            "required": false,
+            "schema": {
+              "default": "",
+              "title": "Prefix",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 100,
+              "title": "Limit",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/FileMetadata"
+                  },
+                  "title": "Response List Files Endpoint Files Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "List Files Endpoint",
+        "tags": [
+          "files"
+        ]
+      }
+    },
+    "/files-by-key": {
+      "delete": {
+        "operationId": "delete_file_by_key_endpoint_files_by_key_delete",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "key",
+            "required": true,
+            "schema": {
+              "title": "Key",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Delete File By Key Endpoint",
+        "tags": [
+          "files"
+        ]
+      }
+    },
+    "/files-by-key/detail": {
+      "get": {
+        "description": "Rich metadata (checksums, image/PDF fields) recomputed on demand.\n\nUnlike /metadata (a cheap head_object), this downloads the object to\nre-run extraction, so it is billed at the tighter 'write' rate-limit tier\n(see runtime/ratelimit.py) to bound egress/cost amplification.",
+        "operationId": "get_file_detail_by_key_endpoint_files_by_key_detail_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "key",
+            "required": true,
+            "schema": {
+              "title": "Key",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileMetadataDetail"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get File Detail By Key Endpoint",
+        "tags": [
+          "files"
+        ]
+      }
+    },
+    "/files-by-key/download": {
+      "get": {
+        "operationId": "download_file_by_key_endpoint_files_by_key_download_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "key",
+            "required": true,
+            "schema": {
+              "title": "Key",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Download File By Key Endpoint",
+        "tags": [
+          "files"
+        ]
+      }
+    },
+    "/files-by-key/metadata": {
+      "get": {
+        "operationId": "get_file_by_key_endpoint_files_by_key_metadata_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "key",
+            "required": true,
+            "schema": {
+              "title": "Key",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileMetadata"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get File By Key Endpoint",
+        "tags": [
+          "files"
+        ]
+      }
+    },
+    "/files-by-key/preview": {
+      "get": {
+        "description": "Return a presigned URL for inline preview. Does not count as a download.",
+        "operationId": "preview_file_by_key_endpoint_files_by_key_preview_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "key",
+            "required": true,
+            "schema": {
+              "title": "Key",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Preview File By Key Endpoint",
+        "tags": [
+          "files"
+        ]
+      }
+    },
+    "/files/stats": {
+      "get": {
+        "operationId": "stats_endpoint_files_stats_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UploadStats"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Stats Endpoint",
+        "tags": [
+          "files"
+        ]
+      }
+    },
+    "/files/stats/activity": {
+      "get": {
+        "operationId": "upload_activity_endpoint_files_stats_activity_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "days",
+            "required": false,
+            "schema": {
+              "default": 7,
+              "title": "Days",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/DailyUploadCount"
+                  },
+                  "title": "Response Upload Activity Endpoint Files Stats Activity Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Upload Activity Endpoint",
+        "tags": [
+          "files"
+        ]
+      }
+    },
+    "/files/{key}": {
+      "delete": {
+        "operationId": "delete_file_endpoint_files__key__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "schema": {
+              "title": "Key",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Delete File Endpoint",
+        "tags": [
+          "files"
+        ]
+      },
+      "get": {
+        "operationId": "get_file_endpoint_files__key__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "schema": {
+              "title": "Key",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileMetadata"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get File Endpoint",
+        "tags": [
+          "files"
+        ]
+      }
+    },
+    "/files/{key}/download": {
+      "get": {
+        "operationId": "download_file_endpoint_files__key__download_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "schema": {
+              "title": "Key",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Download File Endpoint",
+        "tags": [
+          "files"
+        ]
+      }
+    },
+    "/files/{key}/preview": {
+      "get": {
+        "description": "Return a presigned URL for inline preview. Does not count as a download.",
+        "operationId": "preview_file_endpoint_files__key__preview_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "schema": {
+              "title": "Key",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Preview File Endpoint",
+        "tags": [
+          "files"
+        ]
+      }
+    },
+    "/health": {
+      "get": {
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Health",
+        "tags": [
+          "health"
+        ]
+      }
+    },
+    "/metrics": {
+      "get": {
+        "operationId": "metrics_metrics_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Metrics",
+        "tags": [
+          "metrics"
+        ]
+      }
+    },
+    "/scenes": {
+      "get": {
+        "operationId": "list_scenes_endpoint_scenes_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/SceneSummary"
+                  },
+                  "title": "Response List Scenes Endpoint Scenes Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "List Scenes Endpoint",
+        "tags": [
+          "scenes"
+        ]
+      },
+      "post": {
+        "operationId": "create_scene_endpoint_scenes_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SceneCreateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SceneSummary"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Create Scene Endpoint",
+        "tags": [
+          "scenes"
+        ]
+      }
+    },
+    "/scenes/stats": {
+      "get": {
+        "operationId": "lake_stats_endpoint_scenes_stats_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LakeStats"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Lake Stats Endpoint",
+        "tags": [
+          "scenes"
+        ]
+      }
+    },
+    "/scenes/{token}": {
+      "delete": {
+        "operationId": "delete_scene_endpoint_scenes__token__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "title": "Token",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SceneDeleteResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Delete Scene Endpoint",
+        "tags": [
+          "scenes"
+        ]
+      },
+      "get": {
+        "operationId": "get_scene_endpoint_scenes__token__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "title": "Token",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SceneDetail"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Scene Endpoint",
+        "tags": [
+          "scenes"
+        ]
+      },
+      "post": {
+        "operationId": "update_scene_endpoint_scenes__token__post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "title": "Token",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SceneUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SceneSummary"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Update Scene Endpoint",
+        "tags": [
+          "scenes"
+        ]
+      }
+    },
+    "/scenes/{token}/frame": {
+      "post": {
+        "operationId": "serve_frame_endpoint_scenes__token__frame_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "title": "Token",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "keyframe",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "title": "Keyframe",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FrameManifest"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Serve Frame Endpoint",
+        "tags": [
+          "scenes"
+        ]
+      }
+    },
+    "/upload/presign": {
+      "post": {
+        "description": "Validate a declared upload and hand back a presigned PUT.\n\nThe browser uploads the bytes straight to B2 with the returned URL, so they\nnever traverse this Function \u2014 that is what lifts Vercel's ~4.5 MB payload\nceiling. Size and content-type are signed into the URL (see the service).",
+        "operationId": "presign_upload_upload_presign_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PresignUploadRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PresignUploadResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Presign Upload",
+        "tags": [
+          "upload"
+        ]
+      }
+    },
+    "/upload/verify": {
+      "post": {
+        "description": "Confirm an object just uploaded directly to B2 is valid and visible.",
+        "operationId": "verify_upload_route_upload_verify_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyUploadRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileUploadResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Verify Upload Route",
+        "tags": [
+          "upload"
+        ]
+      }
+    }
+  }
+}
