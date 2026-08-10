@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -175,15 +176,26 @@ function TimeOfDayField({ field }: { field: { value: string; onChange: (v: strin
 }
 
 function CreateForm({ onDone }: { onDone: () => void }) {
+  const router = useRouter();
   const form = useForm<CreateValues>({
     resolver: zodResolver(createSchema),
     defaultValues: CREATE_DEFAULTS,
   });
   const create = useCreateScene();
 
+  // handleSubmit only calls this after client validation passes, so closing the
+  // dialog here is safe. We close immediately (no modal trapping navigation
+  // during the multi-second ingest) and track progress with a non-blocking
+  // sonner loading toast. mutateAsync's promise settles independently of the
+  // now-unmounted form, so the toast always resolves — unlike mutate()'s
+  // per-call callbacks, which React Query drops once the observer unmounts.
   const onSubmit = (values: CreateValues) => {
-    create.mutate(
-      {
+    const id = toast.loading(
+      `Ingesting ${values.name} to B2 — synthesizing sensors & uploading blobs…`,
+    );
+    onDone();
+    create
+      .mutateAsync({
         name: values.name,
         description: values.description,
         location: values.location,
@@ -191,17 +203,28 @@ function CreateForm({ onDone }: { onDone: () => void }) {
         weather: values.weather,
         keyframes: Number(values.keyframes),
         sensor_suite: values.sensorSuite,
-      },
-      {
-        onSuccess: (scene) => {
-          toast.success("Scene ingested to B2", {
-            description: `${scene.name} — ${scene.blob_count} sensor blobs under nuscenes/${scene.token}/`,
-          });
-          onDone();
-        },
-        onError: (error) => toast.error("Ingest failed", { description: error.message }),
-      },
-    );
+      })
+      .then((scene) => {
+        toast.success("Scene ingested to B2", {
+          id,
+          description: `${scene.name} — ${scene.blob_count} sensor blobs under nuscenes/${scene.token}/`,
+          action: {
+            label: "Open scene",
+            onClick: () => router.push(`/scenes/${scene.token}`),
+          },
+        });
+        // Auto-chain to the new scene's Serve panel so the primary flow lands
+        // on the payoff without hunting for the (delayed, auto-dismissing)
+        // toast action. Guarded: only push if the user is still on the scenes
+        // list — if they navigated elsewhere during the multi-second ingest,
+        // don't yank them; the toast's "Open scene" action is the fallback.
+        if (window.location.pathname === "/scenes") {
+          router.push(`/scenes/${scene.token}`);
+        }
+      })
+      .catch((error: Error) => {
+        toast.error("Ingest failed", { id, description: error.message });
+      });
   };
 
   return (

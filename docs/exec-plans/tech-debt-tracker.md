@@ -75,3 +75,14 @@ Low-severity polish, left for a follow-up; none blocks the core flow.
 | Custom `FileNotFoundError` shadowed the built-in | Renamed to `FileNotFoundServiceError` |
 | Dropzone accepted any file type client-side | `accept` allow-list mirroring backend `ALLOWED_TYPES` (tested for drift) |
 | No test harness for feature specs | pytest suite across upload, files, activity, errors, validation, rate limit, pagination |
+
+## 2026-08-10 — verify
+
+Nitpicks surfaced by the sample-3-verify UX funnel (goal: create a Scene → ingest to B2 → index with the real devkit → serve a keyframe with real LiDAR stats). None block the goal; logged for backlog. Shots under `.local/verify/`.
+
+- Dashboard — the "New scene" CTA is a link to `/scenes`, not the create dialog → two identically-labeled buttons behave differently and it takes two clicks from the dashboard to open the dialog; deep-link it to open the dialog (e.g. `/scenes?new=1`) or relabel to "View scenes" (`.local/verify/A/01-dashboard-landing.png`)
+- Scenes list — the "New scene" button sits alone at the far right with a large empty band → the toolbar reads unfinished (`.local/verify/A/02-scenes-list.png`)
+- New scene dialog — the "Sensor suite" Select is flush against / slightly clipped at the dialog's right edge (`.local/verify/A/03-new-scene-dialog.png`)
+- Sensor-asset-explorer — camera keyframe thumbnails are 64px synthetic diagonal gradients → they paint fine but read as low-res placeholders rather than imagery; raise the synthetic frame resolution or label them as synthetic (`.local/verify/B/06-camera-previews.png`)
+- Serve frame manifest — LiDAR `Points` is a fixed 60 for every keyframe and ego translation is `0,0,0` → genuinely devkit-computed but the small magnitudes read as unrealistic vs real nuScenes sweeps (~34k pts); vary the synthetic point count / ego pose per keyframe (`.local/verify/C/07-serve-keyframe3.png`)
+- Serve frame manifest — `z_min`/`z_max` are computed by `PointCloudStats` but the UI renders only x/y/intensity → the z extent is never surfaced; add the z range to the LiDAR panel (`.local/verify/C/06-serve-keyframe0.png`)

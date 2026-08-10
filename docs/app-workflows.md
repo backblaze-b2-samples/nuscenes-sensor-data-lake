@@ -18,8 +18,9 @@ kept from the starter.
   a hint, never an autofill button
 - On submit, the API synthesizes a referentially-valid nuScenes dataset and
   **ingests every sensor blob + the 13 annotation tables to B2** under
-  `nuscenes/<slug>/`; a toast reports the blob count and the scene appears in the
-  list
+  `nuscenes/<slug>/`; a toast reports the blob count and, on success, the app
+  auto-navigates to the new scene's detail page (its Serve panel) when the user
+  is still on `/scenes` — otherwise the scene just appears in the list
 - See: [Scene Ingest](features/scene-ingest.md)
 
 ## Open a Scene, explore its sensors, and Serve a frame (Index + Serve)

@@ -191,6 +191,12 @@ export function useScenes({ enabled = true }: QueryGate = {}) {
     queryKey: qk.scenes(),
     queryFn: getScenes,
     enabled,
+    // Always refetch the scene list on (re)mount: an async scene ingest can
+    // finish after the user has left /scenes, so returning within the 30s
+    // default staleTime would otherwise serve the stale pre-create list until a
+    // manual/window-focus refetch. Scoped here rather than lowering the global
+    // default staleTime that other file/stat views rely on.
+    refetchOnMount: "always",
   });
 }
 
@@ -199,6 +205,9 @@ export function useLakeStats({ enabled = true }: QueryGate = {}) {
     queryKey: qk.lakeStats(),
     queryFn: getLakeStats,
     enabled,
+    // Same freshness need as useScenes: the dashboard's scene/keyframe/blob
+    // aggregates must reflect a scene ingested while the user was away.
+    refetchOnMount: "always",
   });
 }
 

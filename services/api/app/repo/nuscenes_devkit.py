@@ -9,9 +9,9 @@ actual `LidarPointCloud.from_file` to compute real point-cloud stats.
 
 from __future__ import annotations
 
+import importlib.metadata
 from typing import Any
 
-import nuscenes
 from nuscenes.nuscenes import NuScenes
 from nuscenes.utils.data_classes import LidarPointCloud
 
@@ -19,7 +19,13 @@ VERSION = "v1.0-demo"
 
 
 def devkit_version() -> str:
-    return getattr(nuscenes, "__version__", "nuscenes-devkit")
+    # The installed `nuscenes-devkit` distribution exposes no module-level
+    # `__version__`, so read the real version from package metadata; fall back to
+    # the package name only if the lookup genuinely fails.
+    try:
+        return importlib.metadata.version("nuscenes-devkit")
+    except importlib.metadata.PackageNotFoundError:
+        return "nuscenes-devkit"
 
 
 def build_index(dataroot: str) -> NuScenes:

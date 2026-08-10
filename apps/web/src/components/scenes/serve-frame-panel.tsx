@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Play } from "lucide-react";
+import { Loader2, Play } from "lucide-react";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
@@ -64,7 +64,15 @@ export function ServeFramePanel({
         </div>
       </CardHeader>
       <CardContent className="p-5">
-        {manifest ? (
+        {serve.isPending ? (
+          <div className="flex items-start gap-3 text-sm text-muted-foreground">
+            <Loader2 aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 animate-spin" />
+            <p>
+              Materializing JSON tables from B2 → building the nuScenes index → resolving
+              the keyframe → downloading one LiDAR blob and computing point-cloud stats…
+            </p>
+          </div>
+        ) : manifest ? (
           <FrameResult manifest={manifest} />
         ) : (
           <p className="text-sm text-muted-foreground">

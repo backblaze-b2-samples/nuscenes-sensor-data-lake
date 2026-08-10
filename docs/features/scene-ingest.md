@@ -37,7 +37,7 @@ the scene's own prefix (the Ingest + Annotate steps in one action).
 - `create_scene()` validates the keyframe count and slugs the name (`<name>-<6hex>`)
 - `scene_synth.generate_scene()` returns the 13 tables + a `{relative_path: bytes}` blob map
 - `nuscenes_lake.put_scene()` `put_object`s every table under `v1.0-demo/`, every blob under `samples/`/`maps/`, and writes `lake-meta.json`
-- The new scene appears in the list; a toast reports the blob count
+- On success the app auto-navigates to the new scene's detail page (its Serve panel) when the user is still on `/scenes`; otherwise the scene appears in the list. A toast reports the blob count either way
 
 ## Edge Cases
 - keyframes not in {3,5,10} → 400 (`SceneError`)
@@ -47,7 +47,7 @@ the scene's own prefix (the Ingest + Annotate steps in one action).
 ## UX States
 - Loading: submit button shows "Ingesting…"
 - Error: destructive toast with the API message
-- Loaded: dialog closes, success toast, scene card in the list
+- Loaded: dialog closes; success toast, then auto-navigate to the scene's detail page (Serve panel) if still on `/scenes`, else the scene card appears in the list
 
 ## Verification
 - Test files: `services/api/tests/test_scenes.py`

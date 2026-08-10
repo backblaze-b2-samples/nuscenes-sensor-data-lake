@@ -19,6 +19,7 @@ from __future__ import annotations
 import json
 import os
 import tempfile
+from concurrent.futures import ThreadPoolExecutor
 from datetime import UTC, datetime
 
 from botocore.exceptions import ClientError
@@ -107,16 +108,27 @@ def put_scene(
 
     Invalidates the shared listing cache once at the end so the new objects show
     up in the full-bucket File Explorer and dashboard stats.
+
+    The ~60 tiny sensor blobs plus the annotation tables are uploaded
+    concurrently via a bounded thread pool — boto3 low-level clients are
+    thread-safe for calls and `get_s3_client()` hands back a single shared
+    client, so this turns ~60 sequential round-trips into a handful of parallel
+    ones. A failed PUT still raises (surfacing as an ingest error) because
+    `Future.result()` re-raises. The metadata marker is written only after every
+    table/blob succeeds, so a partial ingest never leaves a listable scene.
     """
-    for table, rows in tables.items():
-        _put(
-            _table_key(slug, table),
-            json.dumps(rows).encode("utf-8"),
-            "application/json",
-        )
-    for rel_path, data in blobs.items():
-        key = f"{scene_prefix(slug)}{rel_path}"
-        _put(key, data, _content_type(key))
+    puts: list[tuple[str, bytes, str]] = [
+        (_table_key(slug, table), json.dumps(rows).encode("utf-8"), "application/json")
+        for table, rows in tables.items()
+    ]
+    puts += [
+        (f"{scene_prefix(slug)}{rel_path}", data, _content_type(f"{scene_prefix(slug)}{rel_path}"))
+        for rel_path, data in blobs.items()
+    ]
+    with ThreadPoolExecutor(max_workers=12) as executor:
+        futures = [executor.submit(_put, key, data, ctype) for key, data, ctype in puts]
+        for future in futures:
+            future.result()  # re-raise the first failed PUT
     write_meta(slug, meta)
     _invalidate_list_cache()
 
