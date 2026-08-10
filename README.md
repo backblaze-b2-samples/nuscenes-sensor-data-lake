@@ -15,6 +15,24 @@ Explore the official [Backblaze B2 AI integrations and sample applications](http
 - **AV-lake dashboard** — scenes, keyframes, blobs-by-modality chart, recent scenes.
 - Kept from the starter: a full-bucket File Explorer, generic drag-and-drop Upload, the shadcn/ui kit, and a FastAPI backend with strict layered architecture, structural tests, and agent-optimized docs.
 
+## What it looks like
+
+**Dashboard** — AV-lake totals (scenes, keyframes, sensor blobs, lake size), a blobs-by-modality chart, and the most recent scenes.
+
+![Dashboard with AV-lake totals, a blobs-by-modality chart, and recent scenes](docs/images/dashboard.png)
+
+**Scenes** — every nuScenes scene as a card showing its capture location, conditions, keyframe / blob counts, and size, ready to open.
+
+![Scenes list with one card per nuScenes scene](docs/images/scenes.png)
+
+**Scene detail** — the served keyframe's training manifest with real LiDAR point-cloud stats (computed via the devkit) and presigned B2 URLs for every sensor channel.
+
+![Scene detail showing a served keyframe manifest with LiDAR stats and presigned sensor URLs](docs/images/scene-detail.png)
+
+**Sensor asset explorer** — a scene's blobs grouped by sensor channel, with camera keyframes previewed inline straight from presigned B2 GET URLs.
+
+![Sensor asset explorer with camera keyframe previews grouped by channel](docs/images/sensor-explorer.png)
+
 ## Quick Start
 
 You need: Node.js >= 20, pnpm >= 9, Python >= 3.12, and a free **[Backblaze B2 account](https://www.backblaze.com/sign-up/ai-cloud-storage?utm_source=github&utm_medium=referral&utm_campaign=ai_artifacts&utm_content=b2ai-nuscenes-sensor-data-lake)**.
