@@ -7,8 +7,6 @@ The primary entity is a **Scene**. The app demonstrates the full loop end-to-end
 
 > **How B2 fits (honest framing).** B2 is the system of record for every sensor blob and annotation table. The devkit needs a local `dataroot`, so **Index materializes only the small JSON annotation tables** (and the map masks the devkit opens) locally to build the in-memory index; **the sensor blobs stay in B2** and are fetched on demand — a presigned GET for previews/serving, or a pull to a temp file only when computing real LiDAR point-cloud stats. That is the "stream from a B2 lake without co-locating the dataset" story; the multi-GB blobs never have to live on the training node.
 
-Explore the official [Backblaze B2 AI integrations and sample applications](https://www.backblaze.com/cloud-storage/b2-ai-integrations?utm_source=github&utm_medium=referral&utm_campaign=ai_artifacts&utm_content=b2ai-nuscenes-sensor-data-lake) directory and the checked-in [local OpenAPI contract](docs/api/openapi.json).
-
 **What you get out of the box:**
 - **Scenes** — create a referentially-valid nuScenes scene, ingest its camera / LiDAR / radar blobs + annotation tables to B2, index it with the real devkit, and serve any keyframe as a training manifest.
 - **Scene-scoped sensor asset explorer** — browse a scene's blobs grouped by sensor channel, preview camera keyframes inline (presigned), and inspect LiDAR/radar blobs.
