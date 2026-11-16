@@ -16,7 +16,7 @@ PyPDF2>=3.0.0
 # It pulls numpy (<2), opencv-python-headless, matplotlib, pyquaternion, Shapely,
 # scikit-learn and pycocotools transitively. numpy is pinned <2 explicitly because
 # the devkit breaks on numpy 2.x (it caps numpy<2 itself; we make it visible here).
-nuscenes-devkit>=1.1.11
+nuscenes-devkit>=1.2.0
 numpy>=1.26,<2
 
 # Dev / quality
